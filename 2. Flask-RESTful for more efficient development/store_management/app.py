@@ -23,12 +23,12 @@ class Item(Resource):
         #     if item['name'] == name:
         item = next(filter(lambda x: x['name'] == name, items), None)#next gives the first item in the filter list and we are returning None if filter list hasn't anything to give
         return {'item': item}, 200 if item else 404
-    
+
     def post(self ,name):
         # returning message if user wants to create an item with the name that already exists
         if next(filter(lambda x: x['name'] == name, items), None):
             return {'message':'An item with  name {} already exists'.format(name)}, 400
-        
+
         # reques_data = request.get_json() #name is passed through url or route so avoiding json other than price as follow below
         request_data =  Item.parser.parse_args()
         new_item = {
