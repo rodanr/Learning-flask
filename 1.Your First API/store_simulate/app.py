@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, render_template
 # Creating object of Flask class
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
+#We create multiple stores and multiple items in this task
 stores =[
     {
         'name':'My Wonderful Store',
@@ -14,7 +15,7 @@ stores =[
     }
 ]
 
-# POST - used to receive data from user 
+# POST - used to receive data from user
 # GET - used to send data back only/send data back to user
 # In browser POST will use to send us data and GET to recive data but we are server so It's opposite with us
 
@@ -39,7 +40,7 @@ def get_store(name):
     for store in stores:
         if store['name'] == name:
             return jsonify(store)
-    
+
     return jsonify({'message':'store not found'})
 
 # GET /store
